@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="Haswalt\SecurityBundle\Repository\UserRepository" name="Haswalt\SecurityBundle\Entity\User" table="users">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="username" type="string" column="username" length="200"/>
+    <field name="password" type="string" column="password" length="60"/>
+    <field name="roles" type="simple_array" column="roles"/>
+    <field name="forgotToken" type="string" column="forgot_token" length="32" nullable="true"/>
+    <field name="forgotAt" type="datetime" column="forgot_at" nullable="true"/>
+
+    <one-to-many field="applications" target-entity="Haswalt\JobBundle\Entity\Application" mapped-by="user" />
+    <one-to-one field="profile" target-entity="Haswalt\SecurityBundle\Entity\Profile" inversed-by="user" />
+  </entity>
+</doctrine-mapping>

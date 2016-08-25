@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="haswalt_security_token" path="/security/token">
+        <default key="_controller">HaswaltSecurityBundle:Security:token</default>
+    </route>
+
+    <route id="haswalt_security_account" path="/security/account" methods="GET">
+        <default key="_controller">HaswaltSecurityBundle:Users:account</default>
+    </route>
+
+    <route id="haswalt_security_account_register" path="/security/account" methods="POST">
+        <default key="_controller">HaswaltSecurityBundle:Users:register</default>
+    </route>
+
+    <route id="haswalt_security_account_update" path="/security/account" methods="POST,PUT,PATCH">
+        <default key="_controller">HaswaltSecurityBundle:Users:updateAccount</default>
+    </route>
+
+    <route id="haswalt_security_account_forgot" path="/security/reset" methods="POST">
+        <default key="_controller">HaswaltSecurityBundle:Users:forgotPassword</default>
+    </route>
+
+    <route id="haswalt_security_account_reset" path="/security/reset/{token}" methods="POST">
+        <default key="_controller">HaswaltSecurityBundle:Users:resetPassword</default>
+    </route>
+</routes>

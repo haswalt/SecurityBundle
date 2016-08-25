@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="Haswalt\SecurityBundle\Entity\Profile" exclusion-policy="ALL">
+        <property name="id" type="integer" expose="true" groups="default" />
+        <property name="first_name" type="string" expose="true" groups="default" />
+        <property name="last_name" type="array" expose="true" groups="default" />
+    </class>
+</serializer>

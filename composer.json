@@ -1,0 +1,34 @@
+{
+    "name": "haswalt/simple-security-bundle",
+    "type": "symfony-bundle",
+    "description": "",
+    "keywords":["rest", "json", "api"],
+    "homepage": "http://github.com/haswalt/SecurityBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Harry Walter",
+            "homepage": "http://harrywalter.co.uk"
+        }
+    ],
+    "require": {
+        "php": "^5.5.9|~7.0",
+        "jms/serializer-bundle": "^1.1",
+        "haswalt/simple-api-bundle": "^1.0",
+        "friendsofsymfony/oauth2-php": "^1.2"
+    },
+    "suggest": {
+        "nelmio/cors-bundle": "^1.4",
+        "nelmio/api-doc-bundle": "^2.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Haswalt\\SecurityBundle\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

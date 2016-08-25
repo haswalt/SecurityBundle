@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="oauth_server.client_manager" class="Haswalt\SecurityBundle\Manager\ClientManager">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="oauth_server.access_token_manager" class="Haswalt\SecurityBundle\Manager\AccessTokenManager">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="oauth_server.refresh_token_manager" class="Haswalt\SecurityBundle\Manager\RefreshTokenManager">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="oauth_server.security.user_provider" class="Haswalt\SecurityBundle\Security\User\UserProvider">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="oauth_server.storage" class="Haswalt\SecurityBundle\Storage\OAuthStorage">
+            <argument type="service" id="oauth_server.client_manager"/>
+            <argument type="service" id="oauth_server.access_token_manager"/>
+            <argument type="service" id="oauth_server.refresh_token_manager"/>
+            <argument type="service" id="oauth_server.security.user_provider" on-invalid="null"/>
+            <argument type="service" id="security.encoder_factory"/>
+        </service>
+
+        <service id="oauth_server.server" class="OAuth2\OAuth2">
+            <argument type="service" id="oauth_server.storage"/>
+        </service>
+
+        <service id="oauth_server.security.authentication.provider" class="Haswalt\SecurityBundle\Security\Authentication\Provider\OAuthProvider" public="false">
+            <argument/>
+            <argument type="service" id="oauth_server.server"/>
+            <argument type="service" id="security.user_checker"/>
+        </service>
+
+        <service id="oauth_server.security.authentication.listener" class="Haswalt\SecurityBundle\Security\Firewall\OAuthListener" public="false">
+            <argument type="service" id="security.token_storage"/>
+            <argument type="service" id="security.authentication.manager"/>
+            <argument type="service" id="oauth_server.server"/>
+        </service>
+
+        <service id="oauth_server.security.entry_point" class="Haswalt\SecurityBundle\Security\EntryPoint\OAuthEntryPoint" public="false">
+            <argument type="service" id="oauth_server.server"/>
+        </service>
+
+        <service id="oauth_server.security.password_listener" class="Haswalt\SecurityBundle\EventListener\PasswordUpdateSubscriber" public="false">
+            <argument type="service" id="security.encoder_factory"/>
+            <tag name="doctrine.event_subscriber" connection="default"/>
+        </service>
+
+        <service id="oauth_server.security.role_listener" class="Haswalt\SecurityBundle\EventListener\RoleUpdateSubscriber" public="false">
+            <argument type="service" id="security.encoder_factory"/>
+            <tag name="doctrine.event_subscriber" connection="default"/>
+        </service>
+
+        <service id="security.listener.email" class="Haswalt\SecurityBundle\EventListener\EmailSubscriber">
+            <argument type="service" id="haswalt_queue.channel.default"/>
+            <argument type="service" id="templating"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

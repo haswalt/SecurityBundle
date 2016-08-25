@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="Haswalt\SecurityBundle\Entity\User" exclusion-policy="ALL">
+        <property name="id" type="integer" expose="true" read-only="true" groups="default" />
+        <property name="username" type="string" expose="true" groups="default" />
+        <property name="password" type="string" expose="true" groups="private" />
+        <property name="roles" type="array" expose="true" groups="private" />
+        <virtual-property
+            access-type="public_method"
+            method="getPrimaryRole"
+            read-only="true"
+            name="primary_role"
+            type="string"
+            expose="true"
+            groups="default" />
+
+        <property name="profile" type="Haswalt\SecurityBundle\Profile" expose="true" groups="default" />
+    </class>
+</serializer>
