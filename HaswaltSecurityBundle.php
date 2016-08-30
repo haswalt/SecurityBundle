@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Haswalt\SecurityBundle\DependencyInjection\Security\Factory\OAuthFactory;
 
-class SecurityBundle extends Bundle
+class HaswaltSecurityBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
