@@ -172,40 +172,6 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * Add application
-     *
-     * @param \Haswalt\JobBundle\Entity\Application $application
-     *
-     * @return User
-     */
-    public function addApplication(\Haswalt\JobBundle\Entity\Application $application)
-    {
-        $this->applications[] = $application;
-
-        return $this;
-    }
-
-    /**
-     * Remove application
-     *
-     * @param \Haswalt\JobBundle\Entity\Application $application
-     */
-    public function removeApplication(\Haswalt\JobBundle\Entity\Application $application)
-    {
-        $this->applications->removeElement($application);
-    }
-
-    /**
-     * Get applications
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getApplications()
-    {
-        return $this->applications;
-    }
-
-    /**
      * Set profile
      *
      * @param \Haswalt\SecurityBundle\Entity\Profile $profile

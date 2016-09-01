@@ -10,7 +10,6 @@
     <field name="forgotToken" type="string" column="forgot_token" length="32" nullable="true"/>
     <field name="forgotAt" type="datetime" column="forgot_at" nullable="true"/>
 
-    <one-to-many field="applications" target-entity="Haswalt\JobBundle\Entity\Application" mapped-by="user" />
     <one-to-one field="profile" target-entity="Haswalt\SecurityBundle\Entity\Profile" inversed-by="user" />
   </entity>
 </doctrine-mapping>
